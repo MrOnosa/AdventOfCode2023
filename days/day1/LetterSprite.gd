@@ -1,3 +1,4 @@
+class_name LetterSprite
 extends Sprite2D
 
 var move_amount = 7.0    # Amount to add to the x-coordinate
