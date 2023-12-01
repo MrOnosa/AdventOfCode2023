@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://ducnjrnhdui1x"]
+
+[ext_resource type="Texture2D" uid="uid://e81hx3cse858" path="res://textures/Alfabeto.png" id="1_lsmks"]
+[ext_resource type="Script" path="res://days/day1/LetterSprite.gd" id="2_mtqyw"]
+
+[node name="Day1-1" type="Node2D"]
+
+[node name="LetterSprite" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(289, 160)
+scale = Vector2(20, 20)
+texture = ExtResource("1_lsmks")
+region_enabled = true
+region_rect = Rect2(91, 23, 7, 7)
+script = ExtResource("2_mtqyw")
