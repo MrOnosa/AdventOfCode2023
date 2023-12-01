@@ -5,7 +5,8 @@ var move_amount = 7.0    # Amount to add to the x-coordinate
 var wrap_around_limit = 246.0  # Wrap around when x-coordinate exceeds this value
 
 func _ready():
-	_show("a")
+	pass
+	#_show("a")
 
 func _input(event):
 	if(event.is_action_pressed("ui_left")):

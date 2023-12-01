@@ -8,19 +8,18 @@ func _ready():
 	
 	# Load the scene from a file
 	var letter_sprite_scene = load("res://days/day1/letter_sprite.tscn")
+	var line_sprite_scene = load("res://days/day1/line.tscn")
 	
-	var pos = Vector2(70,70)
-	for letter in exampleText:
-		if letter == '\n':
-			pos += Vector2(-pos.x + 70, 170)			
-			continue
-		var l : LetterSprite = letter_sprite_scene.instantiate()
-		l.position = Vector2(pos)
-		add_child(l)
-		l._show(letter)
-		pos += Vector2(110, 0)
-		
-	
+	var currentLine : Line = line_sprite_scene.instantiate()
+	add_child(currentLine)
+	var pos = Vector2(2,13)
+	var lines = exampleText.split("\n")
+	for line in lines:			
+		currentLine = line_sprite_scene.instantiate()
+		currentLine.line = line
+		currentLine.position = pos
+		add_child(currentLine)
+		pos += Vector2(0, 170)		
 
 
 

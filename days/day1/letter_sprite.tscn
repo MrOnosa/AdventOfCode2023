@@ -5,7 +5,7 @@
 
 [node name="LetterSprite" type="Sprite2D"]
 texture_filter = 1
-position = Vector2(289, 160)
+position = Vector2(70, 70)
 scale = Vector2(20, 20)
 texture = ExtResource("1_cfcdr")
 region_enabled = true
