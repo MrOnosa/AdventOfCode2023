@@ -1,6 +1,19 @@
-[gd_scene load_steps=2 format=3 uid="uid://ducnjrnhdui1x"]
+[gd_scene load_steps=3 format=3 uid="uid://ducnjrnhdui1x"]
 
 [ext_resource type="Script" path="res://days/day1/day1-1.gd" id="1_4ihbl"]
+[ext_resource type="Script" path="res://days/day1/Camera2D.gd" id="2_psvdc"]
 
 [node name="Day1-1" type="Node2D"]
+position = Vector2(4, 0)
 script = ExtResource("1_4ihbl")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(570, 325)
+script = ExtResource("2_psvdc")
+
+[node name="Label" type="Label" parent="Camera2D"]
+offset_left = -570.0
+offset_top = -325.0
+offset_right = -551.0
+offset_bottom = -302.0
+text = "23"

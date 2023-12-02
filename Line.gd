@@ -4,6 +4,8 @@ extends Node2D
 @export var line = "" : set = _setLine
 @export var timer : Timer
 
+signal letters_found
+
 var letters : Array[LetterSprite] = []
 var leftmost_letter_index : int = 0
 var rightmost_letter_index : int = 0
@@ -25,9 +27,9 @@ func _setLine(l):
 	for letter in line:
 		if letter == '\n':
 			continue
-		var ls : LetterSprite = letter_sprite_scene.instantiate()
+		var ls : LetterSprite = letter_sprite_scene.instantiate().get_node("LetterSprite")
 		ls.position += Vector2(x,0)
-		add_child(ls)
+		add_child(ls.get_parent())
 		ls._show(letter)
 		x += 130.0
 		letters.append(ls)
@@ -58,5 +60,15 @@ func _on_timer_timeout():
 			letters[rightmost_letter_index]._incorrect()
 			rightmost_letter_index -= 1
 	
-	#if letters[leftmost_letter_index].correct and letters[rightmost_letter_index].correct:		
-		#timer.stop()
+	if letters[leftmost_letter_index].correct and letters[rightmost_letter_index].correct:		
+		timer.stop()
+		letters_found.emit(_get_total())
+		for i in range(leftmost_letter_index+1, rightmost_letter_index):
+			letters[i]._incorrect()
+
+func _get_total():
+	return ((_ord(letters[leftmost_letter_index].letter) - _ord('0')) * 10) + (_ord(letters[rightmost_letter_index].letter) - _ord('0'))
+
+
+func _ord(character: String):
+	return character.to_ascii_buffer()[0]
