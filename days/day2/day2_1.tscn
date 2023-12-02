@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://dpattltu1kamp"]
+
+[ext_resource type="Script" path="res://days/day2/day2_1.gd" id="1_fj2yd"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_kay3p"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_hpjib"]
+sky_material = SubResource("ProceduralSkyMaterial_kay3p")
+
+[sub_resource type="Environment" id="Environment_bjrll"]
+background_mode = 2
+sky = SubResource("Sky_hpjib")
+tonemap_mode = 2
+
+[node name="day2-1" type="Node3D"]
+script = ExtResource("1_fj2yd")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_bjrll")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+
+[node name="MainCamera" type="Camera3D" parent="."]
+transform = Transform3D(0.955118, -0.030244, 0.294677, 0, 0.994774, 0.102098, -0.296225, -0.0975157, 0.950127, 1.04959, 0.727167, 2.3395)
