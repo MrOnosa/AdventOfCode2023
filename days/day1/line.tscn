@@ -7,5 +7,10 @@ script = ExtResource("1_jpxne")
 timer = NodePath("Timer")
 
 [node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+
+[node name="InsaneoStyle" type="Timer" parent="."]
+wait_time = 0.2
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="InsaneoStyle" to="." method="_go_insaneo_style"]

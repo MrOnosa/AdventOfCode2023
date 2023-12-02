@@ -1,6 +1,9 @@
 extends Node2D
 
 var total = 0
+var scoreLine: Line
+var lines_complete = 0
+var lines_to_process = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -12,13 +15,24 @@ func _ready():
 	var letter_sprite_scene = load("res://days/day1/letter_sprite.tscn")
 	var line_sprite_scene = load("res://days/day1/line.tscn")
 	
-	var currentLine : Line = line_sprite_scene.instantiate()
-	add_child(currentLine)
-	var pos = Vector2(20, 20)
+	scoreLine = line_sprite_scene.instantiate()
+	scoreLine.process = false #This is just for instruction that's it thats all
+	scoreLine.position = Vector2(20, 20)
+	scoreLine.line = ""
+	add_child(scoreLine)
+	
+	var instructionsLine : Line = line_sprite_scene.instantiate()
+	instructionsLine.process = false #This is just for instruction that's it thats all
+	instructionsLine.position = Vector2(20, 190)
+	instructionsLine.line = "use mouse wheel and arrow keys"
+	add_child(instructionsLine)
+	
+	var pos = Vector2(20, 420)
 	var lines = exampleText.split("\n")
 	for line in lines:			
 		if line.length() > 0:
-			currentLine = line_sprite_scene.instantiate()
+			lines_to_process += 1
+			var currentLine = line_sprite_scene.instantiate()
 			currentLine.line = line
 			currentLine.position = pos
 			add_child(currentLine)
@@ -32,8 +46,13 @@ func _process(delta):
 	pass
 	
 func _add_to_total(num):
+	lines_complete += 1
 	total += num
-	$Camera2D/Label.text = format_number_with_commas(total)
+	if scoreLine != null:
+		scoreLine.line = format_number_with_commas(total)
+		if lines_to_process == lines_complete:
+			# Done!
+			scoreLine.get_node("InsaneoStyle").start()
 
 func format_number_with_commas(number):
 	var formatted_number = str(number)

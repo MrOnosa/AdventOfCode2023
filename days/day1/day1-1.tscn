@@ -8,12 +8,6 @@ position = Vector2(4, 0)
 script = ExtResource("1_4ihbl")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(570, 325)
+position = Vector2(2300, 1305)
+zoom = Vector2(0.25, 0.25)
 script = ExtResource("2_psvdc")
-
-[node name="Label" type="Label" parent="Camera2D"]
-offset_left = -570.0
-offset_top = -325.0
-offset_right = -551.0
-offset_bottom = -302.0
-text = "23"

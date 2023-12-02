@@ -7,6 +7,7 @@ var default_y = 23
 var focus_y = 15
 var incorrect_y = 7
 var correct_y = 31
+var bonus_y = 39
 
 @export var letter: String
 var focusing = false
@@ -42,6 +43,9 @@ func _ord(character: String):
 func _show(character: String):
 	letter = character
 	var position: int
+	if character == ' ' or character == ',': # Special case for instructions
+		position = -100
+			
 	if  character >= 'a' and character <= 'z':
 		position = _ord(character) - _ord('a')
 	
@@ -58,13 +62,20 @@ func _focus():
 	region_rect.position = Vector2(region_rect.position.x, focus_y)
 	focusing = true
 	
+func _bonus():
+	region_rect.position = Vector2(region_rect.position.x, bonus_y)
+	focusing = true
+	
 func _incorrect():
 	region_rect.position = Vector2(region_rect.position.x, incorrect_y)
 	focusing = false
-	var rb = get_parent()
-	rb.freeze = false
-	rb.linear_velocity = Vector2(randf_range(-50.0, 50.0), randf_range(-500.0, 0.0))
-	$"../VisibleOnScreenNotifier2D".screen_exited.connect(_on_visible_on_screen_notifier_2d_screen_exited)
+	if $"../VisibleOnScreenNotifier2D".is_on_screen():
+		var rb = get_parent()
+		rb.freeze = false
+		rb.linear_velocity = Vector2(randf_range(-50.0, 50.0), randf_range(-500.0, 0.0))
+		$"../VisibleOnScreenNotifier2D".screen_exited.connect(_on_visible_on_screen_notifier_2d_screen_exited)
+	else:
+		queue_free()
 	
 func _correct():
 	region_rect.position = Vector2(region_rect.position.x, correct_y)

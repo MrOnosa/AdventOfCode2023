@@ -3,6 +3,7 @@ extends Node2D
 
 @export var line = "" : set = _setLine
 @export var timer : Timer
+var process = true
 
 signal letters_found
 
@@ -19,6 +20,9 @@ func _process(delta):
 	pass
 
 func _setLine(l):
+	for let in letters:
+		let.queue_free()
+	letters = []
 	line = l	
 	rightmost_letter_index = line.length() - 1
 	var x = 0.0
@@ -31,12 +35,15 @@ func _setLine(l):
 		ls.position += Vector2(x,0)
 		add_child(ls.get_parent())
 		ls._show(letter)
-		x += 130.0
+		x += (30.0 if letter == ',' else 130.0)
 		letters.append(ls)
 	#timer.wait_time = 1.0
 	#timer.timeout.connect(_on_timer_timeout)
-	timer.autostart = true
-
+	if process:
+		timer.autostart = true
+	else:
+		for i in range(0, rightmost_letter_index+1):
+			letters[i]._focus()
 
 func _on_timer_timeout():		
 	if letters.size() == 0 or leftmost_letter_index < 0 or rightmost_letter_index >= letters.size():
@@ -69,6 +76,21 @@ func _on_timer_timeout():
 func _get_total():
 	return ((_ord(letters[leftmost_letter_index].letter) - _ord('0')) * 10) + (_ord(letters[rightmost_letter_index].letter) - _ord('0'))
 
-
 func _ord(character: String):
 	return character.to_ascii_buffer()[0]
+
+var insaneo_style_interation = 0
+func _go_insaneo_style():
+	insaneo_style_interation += 1
+	for i in range(0, line.length()):
+		var style = (i + insaneo_style_interation) % 4
+		if style == 0:
+			letters[i]._focus()
+		elif style == 1:
+			letters[i]._default()
+		elif style == 2:
+			letters[i]._correct()
+		elif style == 3:
+			letters[i]._bonus()
+			
+	

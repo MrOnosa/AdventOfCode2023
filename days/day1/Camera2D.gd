@@ -1,6 +1,6 @@
 extends Camera2D
 
-var move_speed = 100.0
+var move_speed = 200.0
 var zoom_speed = 0.1
 
 # Called when the node enters the scene tree for the first time.
@@ -10,13 +10,13 @@ func _ready():
 
 func _process(delta):
 	if Input.is_action_pressed("ui_right"):
-		position.x += move_speed * delta
+		position.x += move_speed * delta * (1/zoom.x)
 	if Input.is_action_pressed("ui_left"):
-		position.x -= move_speed * delta
+		position.x -= move_speed * delta* (1/zoom.x)
 	if Input.is_action_pressed("ui_up"):
-		position.y -= move_speed * delta
+		position.y -= move_speed * delta* (1/zoom.x)
 	if Input.is_action_pressed("ui_down"):
-		position.y += move_speed * delta
+		position.y += move_speed * delta* (1/zoom.x)
 
 func _input(event):
 	if event is InputEventMouseButton:
