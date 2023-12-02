@@ -1,13 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://cn8lje1mmhehq"]
+[gd_scene load_steps=2 format=3 uid="uid://vjo134vb7cks"]
 
-[ext_resource type="Script" path="res://days/day1/Line.gd" id="1_hj702"]
+[ext_resource type="Script" path="res://days/day1-2/Line2.gd" id="1_xv8lk"]
 
-[node name="Line" type="Node2D" node_paths=PackedStringArray("timer")]
-script = ExtResource("1_hj702")
+[node name="Line2" type="Node2D" node_paths=PackedStringArray("timer")]
+script = ExtResource("1_xv8lk")
 timer = NodePath("Timer")
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 0.5
+wait_time = 0.174
 
 [node name="InsaneoStyle" type="Timer" parent="."]
 wait_time = 0.2

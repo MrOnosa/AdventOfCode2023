@@ -27,6 +27,13 @@ offset_right = 114.0
 offset_bottom = 55.0
 text = "Day 1 - 1"
 
+[node name="Button2" type="Button" parent="Panel"]
+offset_left = 40.0
+offset_top = 64.0
+offset_right = 114.0
+offset_bottom = 95.0
+text = "Day 1 - 2"
+
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 layout_mode = 1
 anchors_preset = 15
@@ -58,3 +65,4 @@ In this example, the calibration values of these four lines are 12, 38, 15, and 
 Consider your entire calibration document. What is the sum of all of the calibration values?"
 
 [connection signal="pressed" from="Panel/Button" to="." method="_on_day_1_1_button_pressed"]
+[connection signal="pressed" from="Panel/Button2" to="." method="_on_day_1_2_button_pressed"]

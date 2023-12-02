@@ -13,3 +13,6 @@ func _process(delta):
 
 func _on_day_1_1_button_pressed():
 	get_tree().change_scene_to_file("res://days/day1/day1-1.tscn")
+	
+func _on_day_1_2_button_pressed():
+	get_tree().change_scene_to_file("res://days/day1-2/day1-2.tscn")

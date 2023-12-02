@@ -1,19 +1,19 @@
 extends Node2D
 
 var total = 0
-var scoreLine: Line1
+var scoreLine: Line2
 var lines_complete = 0
 var lines_to_process = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	#var txtFile = FileAccess.open("res://days/day1/example.txt", FileAccess.READ)
-	var txtFile = FileAccess.open("res://days/day1/puzzle-input.txt", FileAccess.READ)
+	var txtFile = FileAccess.open("res://days/day1-2/puzzle-input.txt", FileAccess.READ)
 	var exampleText = txtFile.get_as_text() # Store text into string record
 	
 	# Load the scene from a file
-	var letter_sprite_scene = load("res://days/day1/letter_sprite.tscn")
-	var line_sprite_scene = load("res://days/day1/line.tscn")
+	var letter_sprite_scene = load("res://days/day1-2/letter_sprite.tscn")
+	var line_sprite_scene = load("res://days/day1-2/line2.tscn")
 	
 	scoreLine = line_sprite_scene.instantiate()
 	scoreLine.process = false #This is just for instruction that's it thats all
@@ -21,7 +21,7 @@ func _ready():
 	scoreLine.line = ""
 	add_child(scoreLine)
 	
-	var instructionsLine : Line1 = line_sprite_scene.instantiate()
+	var instructionsLine : Line2 = line_sprite_scene.instantiate()
 	instructionsLine.process = false #This is just for instruction that's it thats all
 	instructionsLine.position = Vector2(20, 190)
 	instructionsLine.line = "use mouse wheel and arrow keys"

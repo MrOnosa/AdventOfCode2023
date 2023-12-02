@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://ca5uaoxn2f8f7"]
+
+[ext_resource type="Texture2D" uid="uid://e81hx3cse858" path="res://textures/Alfabeto.png" id="1_haqip"]
+[ext_resource type="Script" path="res://days/day1/LetterSprite.gd" id="2_u4hfj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jdadx"]
+size = Vector2(100, 140)
+
+[node name="RigidBody2D" type="RigidBody2D"]
+sleeping = true
+freeze = true
+
+[node name="LetterSprite" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(50, 70)
+scale = Vector2(20, 20)
+texture = ExtResource("1_haqip")
+region_enabled = true
+region_rect = Rect2(91, 23, 7, 7)
+script = ExtResource("2_u4hfj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(50, 70)
+shape = SubResource("RectangleShape2D_jdadx")
+disabled = true
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(51, 10)
