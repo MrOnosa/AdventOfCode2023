@@ -52,7 +52,7 @@ func _on_timer_timeout():
 	if not letters[leftmost_letter_index].focusing and not letters[leftmost_letter_index].correct:
 		letters[leftmost_letter_index]._focus()
 	elif letters[leftmost_letter_index].focusing:
-		if letters[leftmost_letter_index]._eval() or _test_word_from_left():
+		if letters[leftmost_letter_index]._eval():
 			letters[leftmost_letter_index]._correct()
 		else:
 			letters[leftmost_letter_index]._incorrect()
@@ -61,9 +61,9 @@ func _on_timer_timeout():
 	if not letters[rightmost_letter_index].focusing and not letters[rightmost_letter_index].correct:
 		letters[rightmost_letter_index]._focus()
 	elif letters[rightmost_letter_index].focusing:
-		if letters[rightmost_letter_index]._eval() or _test_word_from_right():
+		if letters[rightmost_letter_index]._eval():
 			letters[rightmost_letter_index]._correct()
-		else:			
+		else:
 			letters[rightmost_letter_index]._incorrect()
 			rightmost_letter_index -= 1
 	
@@ -74,54 +74,10 @@ func _on_timer_timeout():
 			letters[i]._incorrect()
 
 func _get_total():
-	return ((_ord(letters[leftmost_letter_index].letter) - _ord('0') if letters[leftmost_letter_index]._eval() else _test_word_from_left()) * 10) + ((_ord(letters[rightmost_letter_index].letter) - _ord('0')) if letters[rightmost_letter_index]._eval() else _test_word_from_right())
+	return ((_ord(letters[leftmost_letter_index].letter) - _ord('0')) * 10) + (_ord(letters[rightmost_letter_index].letter) - _ord('0'))
 
 func _ord(character: String):
 	return character.to_ascii_buffer()[0]
-
-func _test_word_from_left():
-	var line_skip = line.substr(leftmost_letter_index)
-	if(line_skip.begins_with("one")):
-		return 1
-	if(line_skip.begins_with("two")):
-		return 2
-	if(line_skip.begins_with("three")):
-		return 3
-	if(line_skip.begins_with("four")):
-		return 4
-	if(line_skip.begins_with("five")):
-		return 5
-	if(line_skip.begins_with("six")):
-		return 6
-	if(line_skip.begins_with("seven")):
-		return 7
-	if(line_skip.begins_with("eight")):
-		return 8
-	if(line_skip.begins_with("nine")):
-		return 9
-	return 0	
-
-func _test_word_from_right():
-	var line_skip = line.substr(0, rightmost_letter_index + 1)
-	if(line_skip.ends_with("one")):
-		return 1
-	if(line_skip.ends_with("two")):
-		return 2
-	if(line_skip.ends_with("three")):
-		return 3
-	if(line_skip.ends_with("four")):
-		return 4
-	if(line_skip.ends_with("five")):
-		return 5
-	if(line_skip.ends_with("six")):
-		return 6
-	if(line_skip.ends_with("seven")):
-		return 7
-	if(line_skip.ends_with("eight")):
-		return 8
-	if(line_skip.ends_with("nine")):
-		return 9
-	return 0	
 
 var insaneo_style_interation = 0
 func _go_insaneo_style():

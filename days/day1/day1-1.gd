@@ -43,7 +43,9 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):	
-	pass
+	if Input.is_action_pressed("back"):
+		# Change the scene
+		get_tree().change_scene_to_file("res://menu.tscn")
 	
 func _add_to_total(num):
 	lines_complete += 1

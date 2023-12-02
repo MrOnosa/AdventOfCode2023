@@ -71,7 +71,8 @@ func _on_timer_timeout():
 		timer.stop()
 		letters_found.emit(_get_total())
 		for i in range(leftmost_letter_index+1, rightmost_letter_index):
-			letters[i]._incorrect()
+			if not letters[i].correct:
+				letters[i]._incorrect()
 
 func _get_total():
 	return ((_ord(letters[leftmost_letter_index].letter) - _ord('0') if letters[leftmost_letter_index]._eval() else _test_word_from_left()) * 10) + ((_ord(letters[rightmost_letter_index].letter) - _ord('0')) if letters[rightmost_letter_index]._eval() else _test_word_from_right())
@@ -82,44 +83,98 @@ func _ord(character: String):
 func _test_word_from_left():
 	var line_skip = line.substr(leftmost_letter_index)
 	if(line_skip.begins_with("one")):
+		letters[leftmost_letter_index + 1]._correct()
+		letters[leftmost_letter_index + 2]._correct()
 		return 1
 	if(line_skip.begins_with("two")):
+		letters[leftmost_letter_index + 1]._correct()
+		letters[leftmost_letter_index + 2]._correct()
 		return 2
 	if(line_skip.begins_with("three")):
+		letters[leftmost_letter_index + 1]._correct()
+		letters[leftmost_letter_index + 2]._correct()
+		letters[leftmost_letter_index + 3]._correct()
+		letters[leftmost_letter_index + 4]._correct()
 		return 3
 	if(line_skip.begins_with("four")):
+		letters[leftmost_letter_index + 1]._correct()
+		letters[leftmost_letter_index + 2]._correct()
+		letters[leftmost_letter_index + 3]._correct()
 		return 4
 	if(line_skip.begins_with("five")):
+		letters[leftmost_letter_index + 1]._correct()
+		letters[leftmost_letter_index + 2]._correct()
+		letters[leftmost_letter_index + 3]._correct()
 		return 5
 	if(line_skip.begins_with("six")):
+		letters[leftmost_letter_index + 1]._correct()
+		letters[leftmost_letter_index + 2]._correct()
 		return 6
 	if(line_skip.begins_with("seven")):
+		letters[leftmost_letter_index + 1]._correct()
+		letters[leftmost_letter_index + 2]._correct()
+		letters[leftmost_letter_index + 3]._correct()
+		letters[leftmost_letter_index + 4]._correct()
 		return 7
 	if(line_skip.begins_with("eight")):
+		letters[leftmost_letter_index + 1]._correct()
+		letters[leftmost_letter_index + 2]._correct()
+		letters[leftmost_letter_index + 3]._correct()
+		letters[leftmost_letter_index + 4]._correct()
 		return 8
 	if(line_skip.begins_with("nine")):
+		letters[leftmost_letter_index + 1]._correct()
+		letters[leftmost_letter_index + 2]._correct()
+		letters[leftmost_letter_index + 3]._correct()
 		return 9
 	return 0	
 
 func _test_word_from_right():
 	var line_skip = line.substr(0, rightmost_letter_index + 1)
 	if(line_skip.ends_with("one")):
+		letters[rightmost_letter_index - 1]._correct()
+		letters[rightmost_letter_index - 2]._correct()
 		return 1
 	if(line_skip.ends_with("two")):
+		letters[rightmost_letter_index - 1]._correct()
+		letters[rightmost_letter_index - 2]._correct()
 		return 2
 	if(line_skip.ends_with("three")):
+		letters[rightmost_letter_index - 1]._correct()
+		letters[rightmost_letter_index - 2]._correct()
+		letters[rightmost_letter_index - 3]._correct()
+		letters[rightmost_letter_index - 4]._correct()
 		return 3
 	if(line_skip.ends_with("four")):
+		letters[rightmost_letter_index - 1]._correct()
+		letters[rightmost_letter_index - 2]._correct()
+		letters[rightmost_letter_index - 3]._correct()
 		return 4
 	if(line_skip.ends_with("five")):
+		letters[rightmost_letter_index - 1]._correct()
+		letters[rightmost_letter_index - 2]._correct()
+		letters[rightmost_letter_index - 3]._correct()
 		return 5
 	if(line_skip.ends_with("six")):
+		letters[rightmost_letter_index - 1]._correct()
+		letters[rightmost_letter_index - 2]._correct()
 		return 6
 	if(line_skip.ends_with("seven")):
+		letters[rightmost_letter_index - 1]._correct()
+		letters[rightmost_letter_index - 2]._correct()
+		letters[rightmost_letter_index - 3]._correct()
+		letters[rightmost_letter_index - 4]._correct()
 		return 7
 	if(line_skip.ends_with("eight")):
+		letters[rightmost_letter_index - 1]._correct()
+		letters[rightmost_letter_index - 2]._correct()
+		letters[rightmost_letter_index - 3]._correct()
+		letters[rightmost_letter_index - 4]._correct()
 		return 8
 	if(line_skip.ends_with("nine")):
+		letters[rightmost_letter_index - 1]._correct()
+		letters[rightmost_letter_index - 2]._correct()
+		letters[rightmost_letter_index - 3]._correct()
 		return 9
 	return 0	
 

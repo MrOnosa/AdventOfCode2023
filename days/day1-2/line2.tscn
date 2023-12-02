@@ -7,7 +7,7 @@ script = ExtResource("1_xv8lk")
 timer = NodePath("Timer")
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 0.174
+wait_time = 0.4
 
 [node name="InsaneoStyle" type="Timer" parent="."]
 wait_time = 0.2
