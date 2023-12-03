@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=3 uid="uid://367fy8pldp4i"]
+
+[ext_resource type="Script" path="res://days/day2/day2_2.gd" id="1_jwjwv"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_kay3p"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_hpjib"]
+sky_material = SubResource("ProceduralSkyMaterial_kay3p")
+
+[sub_resource type="Environment" id="Environment_bjrll"]
+background_mode = 2
+sky = SubResource("Sky_hpjib")
+tonemap_mode = 2
+
+[node name="day2-2" type="Node3D"]
+script = ExtResource("1_jwjwv")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_bjrll")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="MainCamera" type="Camera3D" parent="."]
+transform = Transform3D(0.955118, -0.030244, 0.294677, 0, 0.994774, 0.102098, -0.296225, -0.0975157, 0.950127, 1.74982, 0.155353, 2.7033)
+
+[node name="ScoreLbl" type="Label" parent="."]
+offset_left = 32.0
+offset_top = 16.0
+offset_right = 384.0
+offset_bottom = 39.0
+
+[node name="RoundLbl" type="Label" parent="."]
+offset_left = 32.0
+offset_top = 48.0
+offset_right = 384.0
+offset_bottom = 71.0
