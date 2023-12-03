@@ -25,6 +25,10 @@ back={
 ]
 }
 
+[layer_names]
+
+3d_physics/layer_2="cube"
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"
