@@ -26,3 +26,15 @@ shadow_enabled = true
 
 [node name="MainCamera" type="Camera3D" parent="."]
 transform = Transform3D(0.955118, -0.030244, 0.294677, 0, 0.994774, 0.102098, -0.296225, -0.0975157, 0.950127, 1.04959, 0.727167, 2.98576)
+
+[node name="ScoreLbl" type="Label" parent="."]
+offset_left = 32.0
+offset_top = 16.0
+offset_right = 384.0
+offset_bottom = 39.0
+
+[node name="RoundLbl" type="Label" parent="."]
+offset_left = 32.0
+offset_top = 48.0
+offset_right = 384.0
+offset_bottom = 71.0

@@ -4,10 +4,16 @@ extends Node3D
 const GameRes = preload("res://days/day2/game_res.gd")
 const RoundRes = preload("res://days/day2/round_res.gd")
 const GAME = preload("res://days/day2/game.tscn")
+@onready var score_lbl = $ScoreLbl
+@onready var round_lbl = $RoundLbl
 
+
+var currentGame 
+var currentGameIndex = 0
+var score = 0
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	var txtFile = FileAccess.open("res://days/day2/example.txt", FileAccess.READ)
+	var txtFile = FileAccess.open("res://days/day2/puzzle-input.txt", FileAccess.READ)
 	var exampleText = txtFile.get_as_text() # Store text into string record
 	var lines = exampleText.split("\n")
 	for line in lines:			
@@ -36,9 +42,36 @@ func _ready():
 	for game_r in all_games:
 		game_r.print_data()
 	
-	var game = GAME.instantiate()
-	add_child(game)
+	_setupNextGame()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+func _process(delta):	
+	if Input.is_action_pressed("back"):
+		# Change the scene
+		get_tree().change_scene_to_file("res://menu.tscn")
+	
+func _on_succeeded():
+	score += all_games[currentGameIndex].id	
+	currentGameIndex += 1
+	_setupNextGame()
+	
+func _on_failed():
+	currentGameIndex += 1
+	_setupNextGame()
+
+func _setupNextGame():	
+	if currentGame != null:
+		currentGame.queue_free()
+		
+	score_lbl.text = "Score: " + str(score)
+	round_lbl.text = "Round: " + str(all_games[currentGameIndex].id)
+	
+	if currentGameIndex >= all_games.size():
+		round_lbl.text = "Game is over after " + str(currentGameIndex) + " rounds."
+	else:			
+		currentGame = GAME.instantiate()
+		currentGame.game_res = all_games[currentGameIndex]
+		add_child(currentGame)
+		currentGame.succeeded.connect(_on_succeeded)
+		currentGame.failed.connect(_on_failed)
+	
