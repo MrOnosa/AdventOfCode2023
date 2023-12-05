@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://cfiufcudrnv61"]
 
-[ext_resource type="Texture2D" uid="uid://e81hx3cse858" path="res://textures/Alfabeto.png" id="1_cfcdr"]
-[ext_resource type="Script" path="res://days/day1/LetterSprite.gd" id="2_4fl7r"]
+[ext_resource type="Texture2D" uid="uid://e81hx3cse858" path="res://textures/Alfabeto.png" id="1_jne2x"]
+[ext_resource type="Script" path="res://utility/AlfLetterSprite.gd" id="2_ab5wk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jdadx"]
 size = Vector2(100, 140)
@@ -14,10 +14,10 @@ freeze = true
 texture_filter = 1
 position = Vector2(50, 70)
 scale = Vector2(20, 20)
-texture = ExtResource("1_cfcdr")
+texture = ExtResource("1_jne2x")
 region_enabled = true
 region_rect = Rect2(91, 23, 7, 7)
-script = ExtResource("2_4fl7r")
+script = ExtResource("2_ab5wk")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(50, 70)
@@ -25,4 +25,5 @@ shape = SubResource("RectangleShape2D_jdadx")
 disabled = true
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
-position = Vector2(51, 10)
+position = Vector2(50, 70)
+scale = Vector2(5, 7)
